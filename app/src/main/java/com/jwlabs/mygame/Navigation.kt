@@ -15,6 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -26,24 +28,24 @@ import androidx.navigation.navArgument
 import java.util.*
 
 @Composable
-fun Navigation(){
+fun Navigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Screens.HomeScreen.route){
-        composable(route = Screens.HomeScreen.route){Home(navController = navController)}
+    NavHost(navController = navController, startDestination = Screens.HomeScreen.route) {
+        composable(route = Screens.HomeScreen.route) { Home(navController = navController) }
         composable(
             route = Screens.MainScreen.route + "/{name}",
             arguments = listOf(
-                navArgument("name"){
+                navArgument("name") {
                     type = NavType.StringType
                     defaultValue = "Placeholder"
                     nullable = true
                 }
             )
-        ){entry ->
+        ) { entry ->
             Landing(name = entry.arguments?.getString("name"))
         }
-        composable(route = Screens.SettingsScreen.route){GameSettings()}
+        composable(route = Screens.SettingsScreen.route) { GameSettings() }
     }
 }
 
@@ -51,7 +53,6 @@ fun Navigation(){
 private fun Landing(name: String?) {
 //        TODO("Not yet implemented")
     Box(modifier = Modifier.fillMaxSize()) {
-
         Column {
             Row(
                 modifier = Modifier
@@ -81,6 +82,7 @@ private fun Landing(name: String?) {
     }
 }
 
+//@Preview
 @Composable
 private fun GameSettings() {
 //        TODO("Not yet implemented")
